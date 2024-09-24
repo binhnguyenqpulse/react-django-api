@@ -1,2 +1,7 @@
-# react-django-api
-Kynami API front end back end -> translated to Django
+# React Django api
+
+- Steps to run it
+- Need various libraries
+	- List here
+- Run
+	- python manage.py runserver
