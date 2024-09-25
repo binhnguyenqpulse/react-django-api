@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIview
 from rest_framework.response import Response
 from .models import *
-from .serializer *
+from .serializer import *
 
 
 # Get the views ... seems like the functions?
