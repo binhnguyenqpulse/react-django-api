@@ -26,9 +26,15 @@ class ReactItemView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        name = self.request.query_params.get('name')
-        if name:
-            queryset = queryset.filter(employee=name)
+        firstname = self.request.query_params.get('firstname')
+        lastname = self.request.query_params.get('lastname')
+        username = self.request.query_params.get('username')
+        if firstname:
+            queryset = queryset.filter(firstname = firstname)
+        if lastname:
+            queryset = queryset.filter(lastname=lastname)
+        if username:
+            queryset = queryset.filter(username=username)
         return queryset
     
     

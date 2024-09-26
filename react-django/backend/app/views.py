@@ -8,8 +8,9 @@ from .serializer *
 # Get the views ... seems like the functions?
 class ReactView (APIview):
     def get(self, request): 
-        output = [{"employee": output.employee,
-                   "department": output.department}
+        output = [{"username": output.employee,
+                   "firstname": output.firstname,
+                   "lastname": output.lastname}
                    for output in React.objects.all ()]
         return Response(output)
     

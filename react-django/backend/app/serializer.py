@@ -12,4 +12,5 @@ from .models import *
 class ReactSerializer(serializers.ModelSerializer):
     class Meta:
         model = React
-        fields = ['employee', 'department']
+        fields = ['username', 'firstname', 'lastname']
+        # This has to match the values in models.py
