@@ -18,7 +18,7 @@ Including another URLconf
 from django.urls import path
 from rest_framework import generics
 from app.models import React
-from app.serializer import ReactSerializer
+from app.serializer import *
 
 class ReactItemView(generics.ListCreateAPIView):
     queryset = React.objects.all()
@@ -30,9 +30,33 @@ class ReactItemView(generics.ListCreateAPIView):
         if name:
             queryset = queryset.filter(employee=name)
         return queryset
+
+class TeamItemView(generics.ListCreateAPIView):
+    queryset = Team.objects.all()
+    serializer_class = TeamNameSerializer
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        name = self.request.query_params.get('team_name')  # Filter by department name
+        if name:
+            queryset = queryset.filter(name__icontains=name)  # Case-insensitive partial match
+        return queryset
+
+class UserAccountView(generics.ListCreateAPIView):
+    queryset = UserAccount.objects.all()
+    serializer_class = UserAccountSerializer
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        name = self.request.query_params.get('username')  # Filter by department name
+        if name:
+            queryset = queryset.filter(name__icontains=name)  # Case-insensitive partial match
+        return queryset
     
     
 # Define urlpatterns to include your view
 urlpatterns = [
     path('react-items/', ReactItemView.as_view(), name='react-item-list'),
+    path('team-names/', TeamItemView.as_view(), name='team-names-list'),
+    path('user-accounts/', UserAccountView.as_view(), name='useaccount-list')
 ]

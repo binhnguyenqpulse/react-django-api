@@ -13,3 +13,14 @@ class ReactSerializer(serializers.ModelSerializer):
     class Meta:
         model = React
         fields = ['employee', 'department']
+
+class TeamNameSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Team
+        fields = ['team_name']
+
+class UserAccountSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserAccount
+        fields = ['username','password','first_name','last_name','email','project_manager','login_time']
+     
