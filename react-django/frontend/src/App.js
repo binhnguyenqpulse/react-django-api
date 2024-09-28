@@ -1,88 +1,60 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
+import './App.css';
+import FormPage1 from './FormPage1';  // Import the FormPage1 component
+import FormPage2 from './FormPage2';  // Import the FormPage2 component
 
-class App extends React.Component {
-    state = {
-        firstname: '',
-        lastname: '',
+function App() {
+    const [formData, setFormData] = useState({
+        // // React Items
+        // firstname: '',
+        // lastname: '',
+        // username: ''
+
+        // User account
         username: '',
-        successMessage: '',
-        errorMessage: ''
-    };
+        password: '',
+        first_name: '',
+        last_name: '',
+        email: '',
+        project_manager: false
+    });
 
-    handleChange = (event) => {
-        this.setState({ [event.target.name]: event.target.value });
-    };
 
-    handleSubmit = (event) => {
-        event.preventDefault();
-        const { firstname, lastname, username } = this.state;
+    const [statusMessage, setStatusMessage] = useState(null);  // State for success/error message
 
-        // Make POST request to Django backend to submit data
-        axios.post('http://localhost:8000/react-items/', {
-            firstname: firstname,
-            lastname: lastname,
-            username: username
-        })
-        .then(response => {
-            this.setState({
-                successMessage: 'Data submitted successfully!',
-                errorMessage: '',
-                firstname: '',
-                lastname: '',
-                username: ''
+    const handleSubmit = () => {
+        console.log('Form Submitted', formData);
+
+        // Axios POST request to send data to the Django backend
+        axios.post('http://localhost:8000/user-accounts/', formData)
+            .then(response => {
+                console.log('Data saved successfully:', response.data);
+                setStatusMessage('Data saved successfully!');  // Set success message
+            })
+            .catch(error => {
+                console.error('There was an error!', error);
+                setStatusMessage('Error saving data! Please try again.');  // Set error message
             });
-        })
-        .catch(error => {
-            console.error('There was an error submitting the form!', error);
-            this.setState({ errorMessage: 'Failed to submit data. Please try again.' });
-        });
     };
 
-    render() {
-        return (
-            <div className="App">
-                <h1>Enter Your Details</h1>
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Firstname:
-                        <input
-                            type="text"
-                            name="firstname"
-                            value={this.state.firstname}
-                            onChange={this.handleChange}
-                        />
-                    </label>
-                    <br />
-                    <label>
-                        Lastname:
-                        <input
-                            type="text"
-                            name="lastname"
-                            value={this.state.lastname}
-                            onChange={this.handleChange}
-                        />
-                    </label>
-                    <br />
-                    <label>
-                        Username:
-                        <input
-                            type="text"
-                            name="username"
-                            value={this.state.username}
-                            onChange={this.handleChange}
-                        />
-                    </label>
-                    <br />
-                    <button type="submit">Submit</button>
-                </form>
+    return (
+        <div className="App">
+            <h1>Fill out the form</h1>
+            {/*/!* Call FormPage1 and pass the necessary props *!/*/}
+            {/*<FormPage1 formData={formData} setFormData={setFormData} handleSubmit={handleSubmit} />*/}
 
-                {/* Display success or error messages */}
-                {this.state.successMessage && <p style={{ color: 'green' }}>{this.state.successMessage}</p>}
-                {this.state.errorMessage && <p style={{ color: 'red' }}>{this.state.errorMessage}</p>}
-            </div>
-        );
-    }
+            {/* Call FormPage2 and pass the necessary props */}
+            <FormPage2 formData={formData} setFormData={setFormData} handleSubmit={handleSubmit} />
+
+            {/* Conditionally render success or error message */}
+            {statusMessage && (
+                <div style={{ marginTop: '20px', color: statusMessage.includes('Error') ? 'red' : 'green' }}>
+                    {statusMessage}
+                </div>
+            )}
+        </div>
+    );
 }
 
 export default App;

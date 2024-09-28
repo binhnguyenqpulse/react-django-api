@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const FormPage1 = () => {
-    const [firstname, setFirstname] = useState('');
+const FormPage3 = () => {
+    const [username, setUsername] = useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post('http://localhost:8000/react-items/', { firstname })
+        axios.post('http://localhost:8000/react-items/', { username })
             .then(res => console.log('Data submitted successfully'))
             .catch(err => console.error('Error submitting form', err));
     };
 
     return (
         <div>
-            <h2>Enter Firstname</h2>
+            <h2>Enter Username</h2>
             <form onSubmit={handleSubmit}>
                 <label>
-                    Firstname:
-                    <input type="text" value={firstname} onChange={e => setFirstname(e.target.value)} />
+                    Username:
+                    <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
                 </label>
                 <button type="submit">Submit</button>
             </form>
@@ -25,4 +25,4 @@ const FormPage1 = () => {
     );
 };
 
-export default FormPage1;
+export default FormPage3;

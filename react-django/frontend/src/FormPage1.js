@@ -1,26 +1,42 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React from 'react';
 
-const FormPage1 = () => {
-    const [firstname, setFirstname] = useState('');
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        axios.post('http://localhost:8000/react-items/', { firstname })
-            .then(res => console.log('Data submitted successfully'))
-            .catch(err => console.error('Error submitting form', err));
-    };
-
+// Component for the form page to capture firstname, lastname, and username
+const FormPage1 = ({ formData, setFormData, handleSubmit }) => {
     return (
         <div>
-            <h2>Enter Firstname</h2>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Firstname:
-                    <input type="text" value={firstname} onChange={e => setFirstname(e.target.value)} />
-                </label>
-                <button type="submit">Submit</button>
-            </form>
+            <h2>Enter your Details</h2>
+
+            <div>
+                <label>Firstname:</label>
+                <input
+                    type="text"
+                    value={formData.firstname}
+                    onChange={e => setFormData({ ...formData, firstname: e.target.value })}
+                    placeholder="Enter Firstname"
+                />
+            </div>
+
+            <div>
+                <label>Lastname:</label>
+                <input
+                    type="text"
+                    value={formData.lastname}
+                    onChange={e => setFormData({ ...formData, lastname: e.target.value })}
+                    placeholder="Enter Lastname"
+                />
+            </div>
+
+            <div>
+                <label>Username:</label>
+                <input
+                    type="text"
+                    value={formData.username}
+                    onChange={e => setFormData({ ...formData, username: e.target.value })}
+                    placeholder="Enter Username"
+                />
+            </div>
+
+            <button onClick={handleSubmit}>Submit</button>
         </div>
     );
 };

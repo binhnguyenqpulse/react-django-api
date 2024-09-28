@@ -44,7 +44,7 @@ class UserAccountView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        name = self.request.query_params.get('username')  # Filter by department name
+        name = self.request.query_params.get('username')
         if name:
             queryset = queryset.filter(name__icontains=name)  # Case-insensitive partial match
         return queryset
@@ -53,5 +53,5 @@ class UserAccountView(generics.ListCreateAPIView):
 # Define urlpatterns to include your view
 urlpatterns = [
     path('react-items/', ReactItemView.as_view(), name='react-item-list'),
-path('user-accounts/', UserAccountView.as_view(), name='useaccount-list'),
+    path('user-accounts/', UserAccountView.as_view(), name='useraccount-list'),
 ]

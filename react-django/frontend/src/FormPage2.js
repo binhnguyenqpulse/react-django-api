@@ -1,28 +1,74 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React from 'react';
 
-const FormPage1 = () => {
-    const [firstname, setFirstname] = useState('');
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        axios.post('http://localhost:8000/react-items/', { firstname })
-            .then(res => console.log('Data submitted successfully'))
-            .catch(err => console.error('Error submitting form', err));
-    };
-
+// Component for the form page to capture firstname, lastname, and username
+const FormPage2 = ({ formData, setFormData, handleSubmit }) => {
     return (
         <div>
-            <h2>Enter Firstname</h2>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Firstname:
-                    <input type="text" value={firstname} onChange={e => setFirstname(e.target.value)} />
-                </label>
-                <button type="submit">Submit</button>
-            </form>
+            <h2>Enter your Details</h2>
+
+            <div>
+                <label>Username:</label>
+                <input
+                    type="text"
+                    value={formData.username}
+                    onChange={e => setFormData({...formData, username: e.target.value})}
+                    placeholder="Enter Username"
+                />
+            </div>
+
+            <div>
+                <label>Firstname:</label>
+                <input
+                    type="text"
+                    value={formData.first_name}
+                    onChange={e => setFormData({...formData, first_name: e.target.value})}
+                    placeholder="Enter Firstname"
+                />
+            </div>
+
+            <div>
+                <label>Lastname:</label>
+                <input
+                    type="text"
+                    value={formData.last_name}
+                    onChange={e => setFormData({...formData, last_name: e.target.value})}
+                    placeholder="Enter Lastname"
+                />
+            </div>
+
+            <div>
+                <label>Password:</label>
+                <input
+                    type="text"
+                    value={formData.password}
+                    onChange={e => setFormData({...formData, password: e.target.value})}
+                    placeholder="Enter password"
+                />
+            </div>
+
+            <div>
+                <label>Email:</label>
+                <input
+                    type="email"
+                    value={formData.email}
+                    onChange={e => setFormData({...formData, email: e.target.value})}
+                    placeholder="Enter Email"
+                />
+            </div>
+
+            <div>
+                <label>PM?:</label>
+                <input
+                    type="checkbox"
+                    checked={formData.project_manager}  // Use checked for boolean value
+                    onChange={e => setFormData({...formData, project_manager: e.target.checked})}
+                />
+            </div>
+
+
+            <button onClick={handleSubmit}>Submit</button>
         </div>
     );
 };
 
-export default FormPage1;
+export default FormPage2;
