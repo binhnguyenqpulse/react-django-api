@@ -14,3 +14,8 @@ class ReactSerializer(serializers.ModelSerializer):
         model = React
         fields = ['username', 'firstname', 'lastname']
         # This has to match the values in models.py
+
+class UserAccountSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserAccount
+        fields = ['username', 'password', 'first_name', 'last_name', 'email', 'project_manager']
