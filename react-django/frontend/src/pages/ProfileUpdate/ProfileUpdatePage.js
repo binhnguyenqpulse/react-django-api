@@ -42,7 +42,7 @@ function ProfileUpdatePage() {
         <div className="container21"><Sidebar /></div>
         <div className="container22">
           <div className="mainContent">
-            <div className="heading">
+            <div className="heading1">
               <h2>Update Profile</h2>
               <p>Update your profile with these fields.</p>
             </div>

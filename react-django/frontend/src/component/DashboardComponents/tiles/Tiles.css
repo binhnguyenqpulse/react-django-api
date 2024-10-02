@@ -16,7 +16,6 @@ body{
 }
 
 .main-content {
-    height: 97%;
     width: 90%;
     padding: 40px;
     background-color: #f8f9fa;
@@ -87,7 +86,6 @@ body, html {
 }
 
 .container22 {
-    height: 55.5rem;
     width: 80%;
     padding: 0 0 0 10;
 }
@@ -165,31 +163,6 @@ body, html {
     color: #a0aac8;
 } 
 
-.create-btn-link {
-    text-decoration: none; /* Remove underline */
-  }
-  
-
-.create-btn {
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    height: 2.7rem;
-    width: 12rem;
-    border-radius: 10px;
-    font-size: 1rem;
-    background-color: #43a7f9;
-    color: white;
-    border: none;
-  }
-
-  .create-btn:hover {
-    cursor: pointer;
-    
-    
-  }
 
   .heading{
     display: flex;

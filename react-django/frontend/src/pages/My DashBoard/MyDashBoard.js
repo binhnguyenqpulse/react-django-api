@@ -16,7 +16,7 @@ export default function MyDashBoard() {
           <div className="main-content">
             <div className='heading'> 
             <h1>Welcome John Doe</h1>
-            <Link to = "/createproject">
+            <Link to = "/createproject" className="create-btn-link">
             <button type="submit" className="create-btn">
                 <FaPlus />  Create new project
             </button> 

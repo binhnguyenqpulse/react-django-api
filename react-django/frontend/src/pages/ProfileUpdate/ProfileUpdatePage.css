@@ -30,13 +30,12 @@ body, html {
 }
 
 .mainContent {
-  width: 100%;
   padding: 40px;
   background-color: #f8f9fa;
   border-radius: 10px;
 }
 
-.heading {
+.heading1 {
   margin-bottom: 20px;
 }
 
