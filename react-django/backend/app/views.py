@@ -194,7 +194,8 @@ class TaskView (APIview):
 class AssignedView (APIview):
     def get(self, request): 
         output = [{"employee": output.employee,
-                   "activity": output.activity}
+                   "activity": output.activity,
+                   "role_name":output.role_name}
                    for output in Assigned.objects.all ()]
         return Response(output)
     

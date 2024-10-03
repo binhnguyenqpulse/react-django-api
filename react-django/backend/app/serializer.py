@@ -72,7 +72,7 @@ class TaskSerializer(serializers.ModelSerializer):
 class AssignedSerializer(serializers.ModelSerializer):
     class Meta:
         model = Assigned
-        fields = ['employee','activity'] 
+        fields = ['employee','activity','role_name'] 
 
 class PrecedingActivitySerializer(serializers.ModelSerializer):
     class Meta:

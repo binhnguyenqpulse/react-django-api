@@ -45,7 +45,7 @@ class Role(models.Model):
 class TeamMember(models.Model):
     team_name = models.ForeignKey(Team, on_delete=models.CASCADE)
     employee_code = models.ForeignKey(Employee, on_delete=models.CASCADE)
-    role_name = models.ForeignKey(Role, on_delete=models.CASCADE)
+    role_name = models.ForeignKey(Role, on_delete=models.CASCADE,default='DEFAULT')
 
     class Meta:
         db_table= 'team_member' 
@@ -121,6 +121,7 @@ class Task(models.Model):
 class Assigned(models.Model):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
     activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
+    role_name = models.ForeignKey(Role, on_delete=models.CASCADE, default='DEFAULT')
     
     class Meta:
         db_table= 'assigned'
