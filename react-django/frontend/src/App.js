@@ -1,6 +1,5 @@
 import './App.css';
 import BasePage from './pages/BasePage/BasePage';
-// import { createRoot } from "react-dom/client";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -12,7 +11,7 @@ import ProfileUpdatePage from './pages/ProfileUpdate/ProfileUpdatePage';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
 import DocumentUpload from './pages/UploadDocuments/DocumentUpload';
 import CreateProject from './pages/CreateProject/CreateProject';
-// import Form from './form.js';
+
 
 
 const router = createBrowserRouter([
