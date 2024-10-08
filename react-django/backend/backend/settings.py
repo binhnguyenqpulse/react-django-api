@@ -27,9 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
-# Application definition
-
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -57,8 +54,6 @@ MIDDLEWARE = [
 REST_FRAMEWORK = {'DEFAULT_PERMISSION_CLASSES':['rest_framework.permissions.AllowAny']}
 
 CORS_ORIGIN_ALLOW_ALL = True
-# This allows for functionality on the browser via react 
-
 
 ROOT_URLCONF = "backend.urls"
 
@@ -85,10 +80,19 @@ WSGI_APPLICATION = "backend.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+    'default': {
+       'ENGINE': 'django.db.backends.postgresql_psycopg2',
+       'NAME': 'Kymani',
+       'USER': 'postgres',
+       # #  Nishi
+       # 'PASSWORD': '12345',
+       # 'HOST': 'localhost',
+       # 'PORT': '5432',
+        # Binh
+        'PASSWORD': '1234',
+        'HOST': 'localhost',
+        'PORT': '5433',
+   }
 }
 
 
