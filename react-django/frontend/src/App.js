@@ -12,8 +12,6 @@ import ErrorPage from './pages/ErrorPage/ErrorPage';
 import DocumentUpload from './pages/UploadDocuments/DocumentUpload';
 import CreateProject from './pages/CreateProject/CreateProject';
 
-
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -49,7 +47,6 @@ const router = createBrowserRouter([
   },
 
 ]);
-
 
 function App() {
   return (
