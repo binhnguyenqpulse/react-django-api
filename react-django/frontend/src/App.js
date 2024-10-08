@@ -12,7 +12,7 @@ import ProfileUpdatePage from './pages/ProfileUpdate/ProfileUpdatePage';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
 import DocumentUpload from './pages/UploadDocuments/DocumentUpload';
 import CreateProject from './pages/CreateProject/CreateProject';
-// import Form from './form.js';
+import Login from './pages/LoginPage/Login';
 
 
 const router = createBrowserRouter([
@@ -48,10 +48,10 @@ const router = createBrowserRouter([
     path: "/*",
     element: (<ErrorPage/>),
   },
-  // {
-  //   path: "/form",
-  //   element: (<Form/>),
-  // },
+  {
+    path: "/login",
+    element: (<Login/>),
+  },
   
 ]);
 
