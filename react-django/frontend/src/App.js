@@ -47,11 +47,7 @@ const router = createBrowserRouter([
     path: "/*",
     element: (<ErrorPage/>),
   },
-  // {
-  //   path: "/form",
-  //   element: (<Form/>),
-  // },
-  
+
 ]);
 
 
