@@ -46,8 +46,7 @@ class TeamMember(models.Model):
     role_name = models.ForeignKey(Role, on_delete=models.CASCADE,default='DEFAULT')
 
     class Meta:
-        db_table= 'team_member' 
-
+        db_table= 'team_member'
 
 class ClientPartner(models.Model):
     client_name = models.CharField(max_length=45, primary_key=True)
