@@ -1,12 +1,10 @@
-from django.db import models
 
-# Create your models here.
+from django.db import models
+from django.utils import timezone
+
 class React (models.Model):
     employee = models.CharField (max_length = 30)
     department = models.CharField (max_length = 200)
-    
-from django.db import models
-from django.utils import timezone
 
 class UserAccount(models.Model):
     username = models.CharField(max_length=45, primary_key=True)
@@ -19,7 +17,6 @@ class UserAccount(models.Model):
 
     class Meta:
         db_table= 'useraccount'
-
 
 class Employee(models.Model):
     employee_code = models.CharField(max_length=20, default="DEFAULT")

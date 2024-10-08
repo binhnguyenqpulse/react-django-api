@@ -4,8 +4,6 @@ from rest_framework.response import Response
 from .models import *
 from .serializer import *
 
-
-# Get the views ... seems like the functions?
 class ReactView (APIview):
     def get(self, request): 
         output = [{"employee": output.employee,

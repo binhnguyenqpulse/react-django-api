@@ -27,9 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
-# Application definition
-
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -57,8 +54,6 @@ MIDDLEWARE = [
 REST_FRAMEWORK = {'DEFAULT_PERMISSION_CLASSES':['rest_framework.permissions.AllowAny']}
 
 CORS_ORIGIN_ALLOW_ALL = True
-# This allows for functionality on the browser via react 
-
 
 ROOT_URLCONF = "backend.urls"
 
@@ -90,13 +85,13 @@ DATABASES = {
        'NAME': 'Kymani',
        'USER': 'postgres',
        # #  Nishi
-       'PASSWORD': '12345',
-       'HOST': 'localhost',
-       'PORT': '5432',
-        # # Binh
-        # 'PASSWORD': '1234',
-        # 'HOST': 'localhost',
-        # 'PORT': '5433',
+       # 'PASSWORD': '12345',
+       # 'HOST': 'localhost',
+       # 'PORT': '5432',
+        # Binh
+        'PASSWORD': '1234',
+        'HOST': 'localhost',
+        'PORT': '5433',
    }
 }
 
