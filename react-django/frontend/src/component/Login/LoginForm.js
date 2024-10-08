@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import axios from 'axios'; // Ensure to import axios
 import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
@@ -14,6 +14,14 @@ const LoginForm = () => {
 
   const [statusMessage, setStatusMessage] = useState(null); // State for success/error message
   const [showPassword, setShowPassword] = useState(false);
+
+  // Check if user is already logged in when component mounts
+  useEffect(() => {
+    const storedUser = window.localStorage.getItem('user');
+    if (storedUser) {
+      navigate('/dashboard'); // Redirect to dashboard if user is already logged in
+    }
+  }, [navigate]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -42,6 +50,9 @@ const LoginForm = () => {
           console.log('Login successful');
           setStatusMessage('Login successful!');
   
+          // Store user information in local storage
+          window.localStorage.setItem('user', JSON.stringify({ username: user.username }));
+
           // Redirect to the Dashboard
           navigate('/dashboard');
         } else {
@@ -54,7 +65,11 @@ const LoginForm = () => {
         setStatusMessage('Error fetching user accounts! Please try again.');
       });
   };
-  
+
+  const handleLogout = () => {
+    window.localStorage.removeItem('user'); // Clear user information from local storage
+    navigate('/login'); // Redirect to login page
+  };
 
   return (
     <div className="login-container">
@@ -62,7 +77,7 @@ const LoginForm = () => {
         <div className="login-header">
           <h2>Login Form</h2>
           <p>Login to your account</p>
-          <p>Don't have an account? <Link to = "/signup">signup</Link></p>
+          <p>Don't have an account? <Link to="/signup">signup</Link></p>
         </div>
 
         <div className="login-form-container">
@@ -108,7 +123,7 @@ const LoginForm = () => {
               <button type="submit" className="submit-btn">
                 Login
               </button>
-              <button type="button" className="cancel-btn">
+              <button type="button" className="cancel-btn" onClick={handleLogout}>
                 Cancel
               </button>
             </div>
