@@ -18,7 +18,7 @@ import Login from './pages/LoginPage/Login';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (<BasePage/>),
+    element: (<Signup/>),
   },
   {
     path: "/dashboard",
@@ -27,10 +27,6 @@ const router = createBrowserRouter([
   {
     path: "/profile",
     element: (<MyProfile/>),
-  },
-  {
-    path: "/signup",
-    element: (<Signup/>),
   },
   {
     path: "/profileupdate",
