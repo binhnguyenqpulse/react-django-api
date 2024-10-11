@@ -77,7 +77,7 @@ const LoginForm = () => {
         <div className="login-header">
           <h2>Login Form</h2>
           <p>Login to your account</p>
-          <p>Don't have an account? <Link to="/signup">signup</Link></p>
+          <p>Don't have an account? <Link to="/">signup</Link></p>
         </div>
 
         <div className="login-form-container">
