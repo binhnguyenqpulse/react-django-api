@@ -1,6 +1,5 @@
 import './App.css';
 import BasePage from './pages/BasePage/BasePage';
-// import { createRoot } from "react-dom/client";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -48,9 +47,8 @@ const router = createBrowserRouter([
     path: "/login",
     element: (<Login/>),
   },
-  
-]);
 
+]);
 
 function App() {
   return (
