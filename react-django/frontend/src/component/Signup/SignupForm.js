@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import axios from 'axios'; // Ensure to import axios
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 import './SignupForm.css';
 
 const SignupForm = () => {
@@ -54,8 +54,18 @@ const SignupForm = () => {
         navigate('/dashboard'); // Navigate to the Dashboard
       })
       .catch((error) => {
-        console.error('There was an error!', error);
-        setStatusMessage('Error saving data! Please try again.'); // Set error message
+        if (error.response && error.response.status === 400) {
+          const errorData = error.response.data;
+          if (errorData.username) {
+            setStatusMessage('Username already exists. Please choose a different one.');
+          } else if (errorData.email) {
+            setStatusMessage('Email already exists. Please choose a different one.');
+          } else {
+            setStatusMessage('Error saving data! Please try again.');
+          }
+        } else {
+          setStatusMessage('Error saving data! Please try again.');
+        }
       });
   };
 
@@ -65,6 +75,7 @@ const SignupForm = () => {
         <div className="signup-header">
           <h2>Signup Form</h2>
           <p>Sign Up to Kaymani Management Group</p>
+          <p>Already have an account? <Link to="/login">Login</Link></p>
         </div>
 
         <div className="signup-form-container">
@@ -148,7 +159,7 @@ const SignupForm = () => {
               <div className="password-input">
                 <input
                   id="confirmPassword"
-                  name="confirmPassword" // Optional: Keep this in state or validate
+                  name="confirmPassword"
                   type={showConfirmPassword ? 'text' : 'password'}
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}

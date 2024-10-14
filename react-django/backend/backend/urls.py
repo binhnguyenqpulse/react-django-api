@@ -207,5 +207,6 @@ urlpatterns = [
     path('Task/',TaskView.as_view(),name=' Task-list'),
     path('Assigned/',AssignedView.as_view(),name='Assigned-list'),
     path('PrecedingActivity/',PrecedingActivityView.as_view(),name='PrecedingActivity-list'),
-    path('PrecedingTask/',PrecedingTaskView.as_view(),name='PrecedingTask-list')
+    path('PrecedingTask/',PrecedingTaskView.as_view(),name='PrecedingTask-list'),
+    path('user-login/', UserAccountView.as_view(), name='Login')
 ] 

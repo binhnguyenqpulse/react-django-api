@@ -4,6 +4,9 @@ from rest_framework.views import APIview
 from rest_framework.response import Response
 from .models import *
 from .serializer import *
+from django.db.models import Q, F
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import authenticate
 
 class ReactView(APIview):
     def get(self, request):
@@ -39,6 +42,33 @@ class UserAccountView(APIview):
             serializer.save()
             return Response(serializer.data)
 
+        
+
+
+class Login(APIview):
+    def post(self, request):
+        output = [{"username": output.username,
+                   "password": output.password}
+                  for output in UserAccount.objects.all()]
+        return Response(output)
+
+    
+'''
+
+def Login(request):
+    flag = 0
+    if (request.method == 'POST'):
+#       form = AuthenticationForm()
+        Uname = request.POST['username']
+        Pword = request.POST['password']
+         
+        serializer = UserAccountSerializer(data=request.data)
+        if ((UserAccount.objects.filter(Q(UserName=Uname) & Q(Password=Pword)).exists())):
+            
+                request.session['user'] = Uname
+                flag = 1
+                return Response(serializer.data)
+'''
 class EmployeeView (APIview):
     def get(self, request): 
         output = [{"employee_code": output.employee_code,
