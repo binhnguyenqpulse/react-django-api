@@ -54,4 +54,5 @@ class UserAccountView(generics.ListCreateAPIView):
 urlpatterns = [
     path('react-items/', ReactItemView.as_view(), name='react-item-list'),
     path('user-accounts/', UserAccountView.as_view(), name='useraccount-list'),
+    path('user-login/', UserAccountView.as_view(), name='Login'),
 ]
