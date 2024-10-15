@@ -80,20 +80,7 @@ class TeamMemberView (APIview):
         # If serializer is valid then return response with data
         if serializer.is_valid(raise_exception=True):
             serializer.save()
-            return Response (serializer.data)   
-
-class ProjectManagerView (APIview):
-    def get(self, request): 
-        output = [{"user_account": output.user_account}
-                   for output in ProjectManager.objects.all ()]
-        return Response(output)
-    
-    def post(self, request):
-        serializer = ProjectManagerSerializer(data = request.data)
-        # If serializer is valid then return response with data
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            return Response (serializer.data)    
+            return Response (serializer.data)
         
 class ProjectView (APIview):
     def get(self, request): 
