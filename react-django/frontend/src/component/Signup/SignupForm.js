@@ -64,7 +64,7 @@ const SignupForm = () => {
       <div className="signup-content">
         <div className="signup-header">
           <h2>Signup Form</h2>
-          <p>Sign Up to Kaymani Management Group</p>
+          <p>Sign Up to Kymani Management Group</p>
         </div>
 
         <div className="signup-form-container">

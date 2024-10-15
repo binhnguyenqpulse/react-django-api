@@ -91,18 +91,7 @@ class TeamMemberView(generics.ListCreateAPIView):
         if name:
             queryset = queryset.filter(name__icontains=name)  # Case-insensitive partial match
         return queryset
-    
-class ProjectManagerView(generics.ListCreateAPIView):
-    queryset = ProjectManager.objects.all()
-    serializer_class = ProjectManagerSerializer
 
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        name = self.request.query_params.get('user_account')  # Filter by department name
-        if name:
-            queryset = queryset.filter(name__icontains=name)  # Case-insensitive partial match
-        return queryset
-    
 class ProjectView(generics.ListCreateAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
@@ -199,7 +188,6 @@ urlpatterns = [
     path('Employee/', EmployeeView.as_view(), name='employee-list'),
     path('Role/', RoleView.as_view(), name='Role-list'),
     path('TeamMember/',TeamMemberView.as_view(),name='teammember-list'),
-    path('ProjectManager/',ProjectManagerView.as_view(),name='ProjectManager-list'),
     path('Project/',ProjectView.as_view(),name='project-list'),
     path('OnProject/',OnProjectView.as_view(),name='OnProject-list'),
     path('ClientPartner/',ClientPartnerView.as_view(),name='ClientPartner-list'),
