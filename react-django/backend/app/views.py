@@ -1,11 +1,12 @@
-
+from django.contrib.auth import authenticate
 from django.shortcuts import render
-from rest_framework.views import APIview
+from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import *
 from .serializer import *
+from rest_framework_simplejwt.tokens import RefreshToken
 
-class ReactView(APIview):
+class ReactView(APIView):
     def get(self, request):
         output = [{"username": output.employee,
                    "firstname": output.firstname,
@@ -20,7 +21,7 @@ class ReactView(APIview):
             serializer.save()
             return Response(serializer.data)
 
-class UserAccountView(APIview):
+class UserAccountView(APIView):
     def get(self, request):
         output = [{"username": output.username,
                    "password": output.password,
@@ -39,7 +40,7 @@ class UserAccountView(APIview):
             serializer.save()
             return Response(serializer.data)
 
-class EmployeeView (APIview):
+class EmployeeView (APIView):
     def get(self, request): 
         output = [{"employee_code": output.employee_code,
                    "first_name": output.first_name,
@@ -55,7 +56,7 @@ class EmployeeView (APIview):
             serializer.save()
             return Response (serializer.data)
         
-class RoleView (APIview):
+class RoleView (APIView):
     def get(self, request): 
         output = [{"role_name": output.role_name}
                    for output in Role.objects.all ()]
@@ -68,7 +69,7 @@ class RoleView (APIview):
             serializer.save()
             return Response (serializer.data)
         
-class TeamMemberView (APIview):
+class TeamMemberView (APIView):
     def get(self, request): 
         output = [{"team_name": output.team_name,
                    "employee_code": output.employee_code}
@@ -82,7 +83,7 @@ class TeamMemberView (APIview):
             serializer.save()
             return Response (serializer.data)   
 
-class ProjectManagerView (APIview):
+class ProjectManagerView (APIView):
     def get(self, request): 
         output = [{"user_account": output.user_account}
                    for output in ProjectManager.objects.all ()]
@@ -95,7 +96,7 @@ class ProjectManagerView (APIview):
             serializer.save()
             return Response (serializer.data)    
         
-class ProjectView (APIview):
+class ProjectView (APIView):
     def get(self, request): 
         output = [{"project_name": output.project_name,
                    "planned_start_date ": output.planned_start_date,
@@ -114,7 +115,7 @@ class ProjectView (APIview):
             serializer.save()
             return Response (serializer.data)  
         
-class OnProjectView (APIview):
+class OnProjectView (APIView):
     def get(self, request): 
         output = [{"project": output.project,
                    "client_partner ": output.client_partner,
@@ -133,7 +134,7 @@ class OnProjectView (APIview):
             serializer.save()
             return Response (serializer.data)  
         
-class ClientPartnerView (APIview):
+class ClientPartnerView (APIView):
     def get(self, request): 
         output = [{"client_name": output.client_name,
                    "address ": output.address,
@@ -148,7 +149,7 @@ class ClientPartnerView (APIview):
             serializer.save()
             return Response (serializer.data)  
         
-class ActivityView (APIview):
+class ActivityView (APIView):
     def get(self, request): 
         output = [{"activity_name": output.activity_name,
                    "priority": output.priority,
@@ -169,7 +170,7 @@ class ActivityView (APIview):
             serializer.save()
             return Response (serializer.data)  
     
-class TaskView (APIview):
+class TaskView (APIView):
     def get(self, request): 
         output = [{"task_name": output.task_name,
                    "priority": output.priority,
@@ -191,7 +192,7 @@ class TaskView (APIview):
             serializer.save()
             return Response (serializer.data)  
         
-class AssignedView (APIview):
+class AssignedView (APIView):
     def get(self, request): 
         output = [{"employee": output.employee,
                    "activity": output.activity,
@@ -206,7 +207,7 @@ class AssignedView (APIview):
             serializer.save()
             return Response (serializer.data)  
     
-class PrecedingActivityView (APIview):
+class PrecedingActivityView (APIView):
     def get(self, request): 
         output = [{"preceding_activity": output.preceding_activity,
                    "activity": output.activity}
@@ -220,7 +221,7 @@ class PrecedingActivityView (APIview):
             serializer.save()
             return Response (serializer.data)  
         
-class PrecedingTaskView (APIview):
+class PrecedingTaskView (APIView):
     def get(self, request): 
         output = [{"preceding_task": output.preceding_task,
                    "task": output.task}
@@ -233,3 +234,9 @@ class PrecedingTaskView (APIview):
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response (serializer.data)  
+        
+
+
+
+
+

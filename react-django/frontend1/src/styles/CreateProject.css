@@ -1,0 +1,200 @@
+.create-project-container {
+    margin: 25px auto;
+  }
+  
+  .create-project-heading {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .create-project-form {
+    /* width: 100%; */
+    background-color: #ffffff;
+    padding: 50px;
+    border-radius: 20px;
+  }
+
+
+  .project-top{
+    /* width: 100%; */
+    height: 400px;
+    gap: 15px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin-right: 100px;
+  }
+  
+  .create-project-section {
+    width: 50%;
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+
+  }
+  .create-project-section label {
+    padding-top: 20px;
+  }
+
+
+
+  
+  .create-project-input, .create-project-textarea {
+    height: 50px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+  
+  .create-project-textarea {
+    height: 60%;
+    resize: vertical;
+  }
+  
+  .create-project-milestones {
+    padding-top: 20px;
+  }
+  
+  .create-project-add-milestone-btn {
+    padding: 4px 10px;
+    color: #28a745;
+    background-color: white;
+    border: 1px solid #28a745 ;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+  }
+  
+  .create-project-add-milestone-btn:hover {
+    color: #218838;
+  }
+  
+  
+  .create-project-milestone-inline-group {
+    height: 150px;
+    width: 50%;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-right: 20px;
+  }
+  
+  .create-project-milestone-inline-group label {
+    padding-top: 20px;
+  }
+
+  .create-project-milestone-inline-group input {
+    height: 50px;
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+  
+  .create-project-milestone-description {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+  }
+  
+  .create-project-submit-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .create-project-submit-btn:hover {
+    background-color: #0056b3;
+  }
+  
+
+  .create-project-milestone-item{
+    /* width: 100%; */
+    margin-right: 100px;
+    height: 200px;
+    gap: 15px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+  }
+
+
+
+
+  
+  .milestone-heading{
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  
+
+
+  
+  .button-group {
+    width: 50%;
+    gap: 10px;
+  }
+  
+  .create-project-submit-btn {
+    width: 30%;
+    height: 40px;
+    padding: 10px;
+    background-color: #42a7f8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .create-project-submit-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .create-project-reset-btn {
+    margin: 10px;
+    height: 40px;
+    width: 20%;
+    padding: 10px;
+    background-color: #f8f9fa;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .create-project-reset-btn:hover {
+    background-color: #f8f9fa;
+  }
+  
+  .create-project-milestone-title-amount{
+    display: flex;
+    gap:10px
+
+  }
+
+  

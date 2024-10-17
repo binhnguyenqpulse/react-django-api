@@ -76,3 +76,4 @@ class PrecedingTaskSerializer(serializers.ModelSerializer):
     class Meta:
         model =PrecedingTask
         fields = ['preceding_task','task']
+

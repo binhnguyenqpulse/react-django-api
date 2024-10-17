@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'app',
     'rest_framework',
     'corsheaders',
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
@@ -50,7 +51,12 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
 ]
 
-REST_FRAMEWORK = {'DEFAULT_PERMISSION_CLASSES':['rest_framework.permissions.AllowAny']}
+REST_FRAMEWORK = {'DEFAULT_PERMISSION_CLASSES':['rest_framework.permissions.AllowAny'],
+                  'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+                  }
+
 
 CORS_ORIGIN_ALLOW_ALL = True
 
@@ -80,17 +86,23 @@ WSGI_APPLICATION = "backend.wsgi.application"
 
 DATABASES = {
     'default': {
-       'ENGINE': 'django.db.backends.postgresql_psycopg2',
-       'NAME': 'Kymani',
-       'USER': 'postgres',
-       # #  Nishi
-       # 'PASSWORD': '12345',
-       # 'HOST': 'localhost',
-       # 'PORT': '5432',
-        # Binh
-        'PASSWORD': '1234',
-        'HOST': 'localhost',
-        'PORT': '5433',
+    #    'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #    'NAME': 'Kymani',
+    #    'USER': 'postgres',
+    #    # #  Nishi
+    #    # 'PASSWORD': '12345',
+    #    # 'HOST': 'localhost',
+    #    # 'PORT': '5432',
+    #     # Binh
+    #     'PASSWORD': '1234',
+    #     'HOST': 'localhost',
+    #     'PORT': '5433',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'my_new_db',  # Use the name of the database you created
+        'USER': 'shreyarai',  # Your PostgreSQL username (change if necessary)
+        'PASSWORD': 'your_password_here',  # Replace with your actual password
+        'HOST': 'localhost',  # Database host
+        'PORT': '5432',  # Database port
    }
 }
 
