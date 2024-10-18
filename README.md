@@ -12,6 +12,6 @@
 	
 ## Front end
 - Be in the front end directory
-- npm start
+- npm run dev
 	
 Source: https://www.youtube.com/watch?v=fBA-jaWab9k&ab_channel=BekBrace
