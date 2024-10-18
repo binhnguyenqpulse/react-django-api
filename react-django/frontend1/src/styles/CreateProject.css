@@ -7,6 +7,11 @@
     margin-bottom: 20px;
     color: #333;
   }
+  .create-project-heading p{
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #666666;
+  }
   
   .create-project-form {
     /* width: 100%; */

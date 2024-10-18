@@ -5,6 +5,7 @@ import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
 import '../styles/Form.css';
 import LoadingIndicator from './LoadingIndicator';
 import { Link } from 'react-router-dom';
+import { IoEyeOutline } from "react-icons/io5";
 
 function Form({ route, method }) {
     const [username, setUsername] = useState('');
@@ -60,7 +61,7 @@ function Form({ route, method }) {
             {method === "login"
             ? "Don't have an account? "
             : "Already have an account? "}
-            <Link to={method === "login" ? "/register" : "/login"}>
+            <Link to={method === "login" ? "/register" : "/login"} className='form-link'>
             {method === "login" ? "Register" : "Login"}
             </Link>
             </p>
@@ -108,18 +109,6 @@ function Form({ route, method }) {
                     placeholder="Email"
                     />
             </div>
-
-            <div className='form-label-input'>
-            <label> Confirm Password</label>
-                    <input
-                        className="form-input"
-                        type="password"
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                        placeholder="Confirm Password"
-                    />
-
-            </div>
                     {/* <input
                         className="form-input"
                         type="password"
@@ -141,6 +130,20 @@ function Form({ route, method }) {
             />
 
 </div>
+{method === 'register' && (
+                <>
+            <div className='form-label-input'>
+            <label> Confirm Password</label>
+                    <input
+                        className="form-input"
+                        type="password"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        placeholder="Confirm Password"
+                    />
+            </div>
+                </>
+            )}
         
             {loading && <LoadingIndicator />}
             <div className='form-btn-group'>

@@ -50,7 +50,7 @@ function CreateProjectForm() {
   return (
     <div className="create-project-container">
       <h2 className="create-project-heading">Create New Project</h2>
-      <h2>Create your new project add the details</h2>
+      <p>Create your new project add the details</p>
       <form onSubmit={handleSubmit} className="create-project-form">
         <div className='project-top'>
         <div className="create-project-section">
