@@ -70,6 +70,7 @@ class Project(models.Model):
         null=True,
         blank=True
     )
+    file_upload = models.FileField(upload_to='uploads/', null=True, blank=True)
 
     class Meta:
         db_table= 'project'

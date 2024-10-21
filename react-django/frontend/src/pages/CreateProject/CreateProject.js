@@ -9,6 +9,7 @@ function CreateProject() {
   const navigate = useNavigate();
   const [managers, setManagers] = useState([]);
   const [statusMessage, setStatusMessage] = useState(null);
+  const [file, setFile] = useState(null);
 
   useEffect(() => {
     axios.get("http://localhost:8000/user-accounts/")
@@ -20,7 +21,6 @@ function CreateProject() {
         console.error("Error fetching project managers:", error);
       });
   }, []);
-
 
   const [formData, setFormData] = useState({
     project_name: "",
@@ -40,30 +40,50 @@ function CreateProject() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    axios.post('http://localhost:8000/Project/', formData)
-      .then((response) => {
-        console.log('Data saved successfully:', response.data);
-        setStatusMessage('Data saved successfully!'); // Set success message
+    // Create a FormData object to handle file upload
+    const data = new FormData();
+    data.append('project_name', formData.project_name);
+    data.append('planned_start_date', formData.planned_start_date);
+    data.append('planned_end_date', formData.planned_end_date);
+    data.append('planned_budget', formData.planned_budget);
+    data.append('description', formData.description);
+    data.append('spent_budget', formData.spent_budget);
+    data.append('project_manager', formData.project_manager);
+    if (file) {
+      data.append('file_upload', file);
+    }
 
-        setFormData({
-          project_name: '',
-          planned_start_date: '',
-          planned_end_date: '',
-          planned_budget: '',
-          description: '',
-          spent_budget: 0,
-          project_manager: ''
-        });
-
-        navigate('/dashboard');
-      })
-      .catch((error) => {
-        console.error('There was an error!', error);
-        setStatusMessage('Error saving data! Please try again.');
+    try {
+      const response = await axios.post('http://localhost:8000/Project/', data, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
       });
+      console.log('Data saved successfully:', response.data);
+      setStatusMessage('Data saved successfully!');
+
+      setFormData({
+        project_name: '',
+        planned_start_date: '',
+        planned_end_date: '',
+        planned_budget: '',
+        description: '',
+        spent_budget: 0,
+        project_manager: ''
+      });
+      setFile(null);
+      navigate('/dashboard');
+    } catch (error) {
+      console.error('There was an error!', error);
+      setStatusMessage('Error saving data! Please try again.');
+    }
   };
 
   const handleAddScope = () => {
@@ -85,7 +105,7 @@ function CreateProject() {
           <div className="main-content">
             <div className="create-project-container">
               <h2>Create New Project</h2>
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} encType="multipart/form-data">
 
                 <div className="form-group">
                   <label>Project Name</label>
@@ -161,6 +181,15 @@ function CreateProject() {
                         </option>
                     ))}
                   </select>
+                </div>
+
+                {/* File Upload Input */}
+                <div className="form-group">
+                  <label>Upload File (Optional)</label>
+                  <input
+                      type="file"
+                      onChange={handleFileChange}
+                  />
                 </div>
 
                 <button type="submit" className="submit-button">Submit</button>

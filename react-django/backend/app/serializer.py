@@ -35,8 +35,8 @@ class TeamMemberSerializer(serializers.ModelSerializer):
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
-        fields = ['project_name', 'planned_start_date', 'planned_end_date', 'planned_budget', 'spent_budget', 'description', 'project_manager']
-        # fields = ['project_name', 'planned_start_date', 'planned_end_date', 'planned_budget', 'spent_budget', 'description']
+        fields = ['id','project_name', 'planned_start_date', 'planned_end_date',
+                  'planned_budget', 'spent_budget', 'description', 'project_manager', 'file_upload']
 
 class OnProjectSerializer(serializers.ModelSerializer):
     class Meta:

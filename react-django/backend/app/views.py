@@ -81,26 +81,53 @@ class TeamMemberView (APIview):
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response (serializer.data)
-        
-class ProjectView (APIview):
-    def get(self, request): 
+
+class ProjectView(APIview):
+    def get(self, request):
         output = [{"project_name": output.project_name,
-                   "planned_start_date ": output.planned_start_date,
+                   "planned_start_date": output.planned_start_date,
                    "planned_end_date": output.planned_end_date,
                    "planned_budget": output.planned_budget,
                    "spent_budget": output.spent_budget,
                    "description": output.description,
-                   "project_manager ": output.project_manager}
-                   for output in Project.objects.all ()]
+                   "project_manager": output.project_manager,
+                   "file_upload": output.file_upload}
+                  for output in Project.objects.all()]
         return Response(output)
-    
+
+    def get_project(self, request, pk):
+        try:
+            project = Project.objects.get(pk=pk)
+            serializer = ProjectSerializer(project)
+            return Response(serializer.data)
+        except Project.DoesNotExist:
+            return Response({"error": "Project not found."}, status=status.HTTP_404_NOT_FOUND)
+
     def post(self, request):
-        serializer = ProjectSerializer(data = request.data)
-        # If serializer is valid then return response with data
+        serializer = ProjectSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
-            return Response (serializer.data)  
-        
+            return Response(serializer.data)
+
+    def put(self, request, pk):
+        try:
+            project = Project.objects.get(pk=pk)
+            serializer = ProjectSerializer(instance=project, data=request.data)
+            if serializer.is_valid(raise_exception=True):
+                serializer.save()
+                return Response(serializer.data)
+        except Project.DoesNotExist:
+            return Response({"error": "Project not found."}, status=status.HTTP_404_NOT_FOUND)
+
+    def delete(self, request, pk):
+        try:
+            project = Project.objects.get(pk=pk)
+            project.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except Project.DoesNotExist:
+            return Response({"error": "Project not found."}, status=status.HTTP_404_NOT_FOUND)
+
+
 class OnProjectView (APIview):
     def get(self, request): 
         output = [{"project": output.project,
