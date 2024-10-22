@@ -10,6 +10,11 @@ function EditProject() {
   const navigate = useNavigate();
   const [project, setProject] = useState(null);
   const [statusMessage, setStatusMessage] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  const handleFileChange = (e) => {
+  setSelectedFile(e.target.files[0]);
+};
 
   useEffect(() => {
     // Fetch the project details using the project ID
@@ -33,17 +38,35 @@ function EditProject() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const formData = new FormData();
+
+    // Append all project fields to FormData
+    for (const key in project) {
+      formData.append(key, project[key]);
+    }
+
+    // Append the file to FormData if a file was selected
+    if (selectedFile) {
+      formData.append('file_upload', selectedFile);
+    }
+
     // Update the project using the ID
-    axios.put(`http://localhost:8000/Project/${id}/`, project)
-      .then(() => {
-        setStatusMessage('Project updated successfully!');
-        navigate('/projectlist'); // Redirect to the projects list
-      })
-      .catch((error) => {
-        console.error('There was an error updating the project!', error);
-        setStatusMessage('Error updating project. Please try again.');
-      });
+    axios.put(`http://localhost:8000/Project/${id}/`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+    .then(() => {
+      setStatusMessage('Project updated successfully!');
+      navigate('/projectlist'); // Redirect to the projects list
+    })
+    .catch((error) => {
+      console.error('There was an error updating the project!', error);
+      setStatusMessage('Error updating project. Please try again.');
+    });
   };
+
 
   if (!project) return <div>Loading...</div>; // Loading state
 
@@ -62,22 +85,44 @@ function EditProject() {
                 <div className="form-group">
                   <label>Project Name</label>
                   <input
-                    type="text"
-                    name="project_name"
-                    value={project.project_name}
-                    onChange={handleInputChange}
-                    required
+                      type="text"
+                      name="project_name"
+                      value={project.project_name}
+                      onChange={handleInputChange}
+                      required
                   />
                 </div>
+
+                <div className="form-group">
+                  <label>Scope of Work</label>
+                  <input
+                      type="text"
+                      name="description"
+                      value={project.description}
+                      onChange={handleInputChange}
+                      placeholder="Scope of work"
+                      required
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>Upload File</label>
+                  <input
+                      type="file"
+                      name="file_upload"
+                      onChange={(e) => handleFileChange(e)}
+                  />
+                </div>
+
 
                 {/* Add other fields similarly */}
                 <button type="submit">Update Project</button>
               </form>
 
               {statusMessage && (
-                <div className={`status-message ${statusMessage.includes('Error') ? 'error' : 'success'}`}>
+                  <div className={`status-message ${statusMessage.includes('Error') ? 'error' : 'success'}`}>
                   {statusMessage}
-                </div>
+                  </div>
               )}
             </div>
           </div>

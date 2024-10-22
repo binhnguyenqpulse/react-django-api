@@ -54,26 +54,28 @@ const handleDelete = (projectId) => {
 
               <table className="projects-table">
                 <thead>
-                  <tr>
-                    <th>Project Name</th>
-                    <th>Planned Start Date</th>
-                    <th>Planned End Date</th>
-                    <th>Planned Budget</th>
-                    <th>Actions</th>
-                  </tr>
+                <tr>
+                  <th>Project Name</th>
+                  <th>Scope of Project</th>
+                  <th>Planned Start Date</th>
+                  <th>Planned End Date</th>
+                  <th>Planned Budget</th>
+                  <th>Actions</th>
+                </tr>
                 </thead>
                 <tbody>
                   {projects.map(project => (
-                    <tr key={project.id}>
-                      <td>{project.project_name}</td>
-                      <td>{project.planned_start_date}</td>
-                      <td>{project.planned_end_date}</td>
-                      <td>{project.planned_budget}</td>
-                      <td>
-                        <Link to={`/edit-project/${project.id}`} className="edit-button">Edit</Link>
-                        <button onClick={() => handleDelete(project.id)} className="delete-button">Delete</button>
-                      </td>
-                    </tr>
+                      <tr key={project.id}>
+                        <td>{project.project_name}</td>
+                        <td>{project.description}</td>
+                        <td>{project.planned_start_date}</td>
+                        <td>{project.planned_end_date}</td>
+                        <td>{project.planned_budget}</td>
+                        <td>
+                          <Link to={`/edit-project/${project.id}`} className="edit-button">Edit</Link>
+                          <button onClick={() => handleDelete(project.id)} className="delete-button">Delete</button>
+                        </td>
+                      </tr>
                   ))}
                 </tbody>
               </table>
