@@ -35,13 +35,12 @@ class TeamMemberSerializer(serializers.ModelSerializer):
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
-        fields = ['id','project_name', 'planned_start_date', 'planned_end_date',
-                  'planned_budget', 'spent_budget', 'description', 'project_manager', 'file_upload']
+        fields = '__all__'
 
 class OnProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = OnProject
-        fields = ['project', 'client_partner', 'date_start', 'date_end', 'is_client','is_partner', 'description']
+        fields = '__all__'
 
 class ClientPartnerSerializer(serializers.ModelSerializer):
     class Meta:

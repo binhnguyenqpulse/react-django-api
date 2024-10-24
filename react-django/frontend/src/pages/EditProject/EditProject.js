@@ -13,8 +13,8 @@ function EditProject() {
   const [selectedFile, setSelectedFile] = useState(null);
 
   const handleFileChange = (e) => {
-  setSelectedFile(e.target.files[0]);
-};
+    setSelectedFile(e.target.files[0]); // Store selected file in state
+  };
 
   useEffect(() => {
     // Fetch the project details using the project ID
@@ -37,26 +37,28 @@ function EditProject() {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const formData = new FormData();
+  const formData = new FormData();
 
-    // Append all project fields to FormData
-    for (const key in project) {
-      formData.append(key, project[key]);
-    }
+  // Append all project fields to FormData
+  for (const key in project) {
+    formData.append(key, project[key]);
+  }
 
-    // Append the file to FormData if a file was selected
-    if (selectedFile) {
-      formData.append('file_upload', selectedFile);
-    }
+  // Append the file only if a file was selected
+  if (selectedFile) {
+    formData.append('file_upload', selectedFile);
+  } else {
+    formData.delete('file_upload'); // Ensure the field is not sent if no file is uploaded
+  }
 
-    // Update the project using the ID
-    axios.put(`http://localhost:8000/Project/${id}/`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    })
+  // Update the project using the ID
+  axios.put(`http://localhost:8000/Project/${id}/`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  })
     .then(() => {
       setStatusMessage('Project updated successfully!');
       navigate('/projectlist'); // Redirect to the projects list
@@ -65,7 +67,7 @@ function EditProject() {
       console.error('There was an error updating the project!', error);
       setStatusMessage('Error updating project. Please try again.');
     });
-  };
+};
 
 
   if (!project) return <div>Loading...</div>; // Loading state
@@ -110,12 +112,10 @@ function EditProject() {
                   <input
                       type="file"
                       name="file_upload"
-                      onChange={(e) => handleFileChange(e)}
+                      onChange={handleFileChange} // File input
                   />
                 </div>
 
-
-                {/* Add other fields similarly */}
                 <button type="submit">Update Project</button>
               </form>
 
